@@ -1,6 +1,6 @@
 {
   "name": "@ff00ff/mammoth-cli",
-  "version": "0.1.0",
+  "version": "1.0.0-beta.1",
   "author": "Martijn de Haan @martijndeh",
   "bin": {
     "mammoth": "./bin/run"
@@ -11,18 +11,30 @@
     "@oclif/config": "^1.17.0",
     "@oclif/plugin-help": "^3.2.0",
     "@pgql/parse": "^1.2.6",
+    "chalk": "^4.1.0",
+    "figures": "^3.2.0",
+    "fs-extra": "^9.0.1",
     "pg": "^8.4.1",
+    "pg-connection-string": "^2.4.0",
+    "pg-error-snippet": "0.0.2",
     "pgsql-parser": "^0.8.1",
+    "spinnies": "^0.5.1",
+    "ts-node": "^9.0.0",
     "tslib": "^1.14.1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.2",
-    "@types/node": "^10.17.39",
+    "@types/fs-extra": "^9.0.2",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^10.17.40",
+    "@types/pg": "^7.14.5",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
     "eslint-config-oclif-typescript": "^0.1.0",
     "globby": "^10.0.2",
-    "ts-node": "^8.10.2",
+    "jest": "^26.6.1",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.2",
     "typescript": "^3.9.7"
   },
   "engines": {
@@ -34,7 +46,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/ff00ff/mammoth-cli",
+  "homepage": "https://mammoth.tools",
   "keywords": [
     "oclif"
   ],
@@ -52,9 +64,26 @@
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "test": "echo NO TESTS",
-    "version": "oclif-dev readme && git add README.md",
-    "go": "ts-node ./src/test.ts"
+    "test": "jest",
+    "version": "oclif-dev readme && git add README.md"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "__tests__"
+    ],
+    "testPathIgnorePatterns": [
+      "/\\.build/",
+      "/node_modules/",
+      "helpers"
+    ],
+    "testRegex": "/__tests__/.*\\.test\\.ts$",
+    "transform": {
+      "\\.ts$": "ts-jest"
+    }
+  }
 }
