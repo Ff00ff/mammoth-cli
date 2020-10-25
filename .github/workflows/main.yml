@@ -3,7 +3,7 @@ name: Lint, build & test
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   NODE_VERSION: 12.x
