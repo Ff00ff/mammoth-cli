@@ -7,6 +7,7 @@ interface ColumnDefinitionFormat {
   checkExpression?: string;
   isUnique: boolean;
   referencesTable?: {};
+  referencesSelf?: boolean;
   referencesColumn?: string;
 }
 

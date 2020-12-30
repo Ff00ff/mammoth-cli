@@ -51,7 +51,13 @@ const generateCreateTableSql = (
         throw new Error(`Could not find reference table in column '${column.name}'.`);
       }
 
-      parts.push(`REFERENCES ${referenceTable.name} (${column.referencesColumn})`);
+      parts.push(
+        `REFERENCES ${toSnakeCase(referenceTable.name)} (${toSnakeCase(column.referencesColumn!)})`,
+      );
+    } else if (column.referencesSelf) {
+      parts.push(
+        `REFERENCES ${toSnakeCase(table.name)} (${toSnakeCase(column.referencesColumn!)})`,
+      );
     }
 
     return parts.join(' ');
