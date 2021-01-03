@@ -234,7 +234,9 @@ export const createSql = (
         }
       });
 
-      fromTable.columns.forEach((fromColumn) => {
+      const fromColumns = [...fromTable.columns];
+
+      fromColumns.forEach((fromColumn) => {
         const toColumn = toTable.columns.find((column) => column.name === fromColumn.name);
 
         if (!toColumn) {
